@@ -12,8 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 public class User {
 
