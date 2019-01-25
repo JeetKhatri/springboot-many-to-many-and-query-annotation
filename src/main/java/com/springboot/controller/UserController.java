@@ -1,5 +1,7 @@
 package com.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +29,12 @@ public class UserController {
 	@RequestMapping("/add-user")
 	public User addUser(@RequestBody User user) {
 		return userRepository.save(user);
+	}
+	
+	@RequestMapping("/query-annotations")
+	public List<User> addUser() {
+		List<User> userList = userRepository.findByNamesNamedJPQL("jeet", "test");
+		System.out.println(userList.size());
+		return null;
 	}
 }
