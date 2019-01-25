@@ -3,6 +3,7 @@ package com.springboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +34,19 @@ public class UserController {
 	
 	@RequestMapping("/query-annotations")
 	public List<User> addUser() {
-		List<User> userList = userRepository.findByNamesNamedJPQL("jeet", "test");
-		System.out.println(userList.size());
+		
+		//https://www.baeldung.com/spring-data-jpa-query
+		List<User> userList = null;
+		// Sorting 
+		userList = userRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
+		// user define sorting
+		userList = userRepository.findAllUsers(new Sort("name"));
+		// Indexed Query Parameters
+		userList = userRepository.findByNamesIndexedJPQL("jeet", "test");
+		userList = userRepository.findByNamesIndexedSQL("jeet", "test");
+		// Named Parameters
+		userList = userRepository.findByNamesNamedJPQL("jeet", "test");
+		userList = userRepository.findByNamesNamedSQL("jeet", "test");
 		return null;
 	}
 }
