@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
@@ -43,6 +44,14 @@ public class checkingColumnValidation {
     @Lob
     @Column
     private String longAddress;
+    
+    @NotNull
+    @Column(columnDefinition = "boolean default false") 
+    private boolean isTest;
+    
+    @NotNull
+    @Column(columnDefinition = "boolean default false") 
+    private boolean isTest1;
     
 	public int getId() {
 		return id;
