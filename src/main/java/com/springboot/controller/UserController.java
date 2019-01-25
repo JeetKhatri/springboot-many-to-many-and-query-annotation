@@ -33,7 +33,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/query-annotations")
-	public List<User> addUser() {
+	public String addUser() {
 		
 		//https://www.baeldung.com/spring-data-jpa-query
 		List<User> userList = null;
@@ -47,6 +47,10 @@ public class UserController {
 		// Named Parameters
 		userList = userRepository.findByNamesNamedJPQL("jeet", "test");
 		userList = userRepository.findByNamesNamedSQL("jeet", "test");
-		return null;
+		
+		// update query
+		userRepository.updateUserSetNumberForNameUsingJPQL("123", "test");
+		userRepository.updateUserSetNumberForNameUsingSQL("12345", "test");
+		return "success";
 	}
 }
